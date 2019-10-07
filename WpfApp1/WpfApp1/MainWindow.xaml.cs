@@ -28,23 +28,33 @@ namespace WpfApp1
 
         public MainWindow()
         {
+            
             InitializeComponent();
+            List<Lista1> Utwór = new List<Lista1>(); 
         }
 
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        public void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
 
         private void Dodaj_Click(object sender, RoutedEventArgs e)
         {
-            
-                OpenFileDialog openFileDialog = new OpenFileDialog();
-            if (openFileDialog.ShowDialog() == true)
+            try
             {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.DefaultExt.Contains("*.wav");
+                openFileDialog.Filter = "Wav files (*wav)|*.wav";
+                if (openFileDialog.ShowDialog() == true)
+                {
 
+                    
+                }
             }
-
+            catch(Exception ex) {
+                MessageBox.Show(ex.Message, "Błąd załadowania utworu.");
+            }
            
         }
     }
