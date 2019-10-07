@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WpfApp1
 {
-   public class Lista1 : MainWindow
+   public class Lista2
     {
         public string Nazwa { get; set; }
         public string Ścieszka { get; set; }

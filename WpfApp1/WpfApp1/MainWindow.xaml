@@ -8,11 +8,12 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Button x:Name="Dodaj" Content="Dodaj" HorizontalAlignment="Left" Margin="200,20,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.173,5.7" Click="Dodaj_Click"/>
-        <ListBox HorizontalAlignment="Left" Height="120" Margin="20,20,0,0" VerticalAlignment="Top" Width="175" SelectionChanged="ListBox_SelectionChanged"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="200,45,0,0" VerticalAlignment="Top" Width="75"/>
+        <ListBox x:Name="ListBoxWav" HorizontalAlignment="Left" Height="120" Margin="20,20,0,0" VerticalAlignment="Top" Width="175" SelectionChanged="ListBox_SelectionChanged"/>
+        <Button x:Name="Usuń" Content="Ususń" HorizontalAlignment="Left" Margin="200,45,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
         <Button Content="Button" HorizontalAlignment="Left" Margin="200,70,0,0" VerticalAlignment="Top" Width="75"/>
         <Button Content="Button" HorizontalAlignment="Left" Margin="200,95,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.533,-0.5"/>
         <Button Content="Button" HorizontalAlignment="Left" Margin="200,120,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBox x:Name="TextBox" HorizontalAlignment="Left" Height="23" Margin="225,205,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>
