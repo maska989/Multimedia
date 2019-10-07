@@ -9,6 +9,7 @@ namespace WpfApp1
    public class Lista1 : MainWindow
     {
         public string Nazwa { get; set; }
+        public string Ścieszka { get; set; }
         public int Procent { get; set; }
     }
 }
