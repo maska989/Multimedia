@@ -26,14 +26,26 @@ namespace WpfApp1
     {
         public string NazwaUtworó;
         public string filePath;
-        List<Lista1> Utwór = new List<Lista1>();
+        List<string> Utwór = new List<string>();
+        List<Muzyka> muza = new List<Muzyka>();
         public MainWindow()
         {
-            
-            InitializeComponent();
-            
-        }
 
+            InitializeComponent();
+
+        }
+        public class Muzyka
+        {
+            public string nazwa { get; set; }
+            public string ścieszka { get; set; }
+
+            public override string ToString()
+            {
+                
+                return nazwa + " " + ścieszka;
+            }
+
+        }
         private void Dodaj_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -46,13 +58,13 @@ namespace WpfApp1
                 if (openFileDialog.ShowDialog() == true)
                 {
 
-                      foreach(string filename in openFileDialog.FileNames)
+                      foreach(string filepath in openFileDialog.FileNames)
                     {
-                        Utwór.Add(new Lista1() {Nazwa = "cos" });
-                        ListBoxWav.Items.Add("{0}",Utwór.ToString);
+                        Utwór.Add(openFileDialog.SafeFileName);
+                        muza.Add(new Muzyka() {nazwa = openFileDialog.SafeFileName , ścieszka = filepath });
+                        
                         
                     }
-//                    Utwór.Add(new Lista1() {Nazwa = openFileDialog.SafeFileName});
                     
                 }
                 
@@ -60,14 +72,9 @@ namespace WpfApp1
             catch(Exception ex) {
                 MessageBox.Show(ex.Message, "Błąd załadowania utworu.");
             }
-           
+            ListWPF.ItemsSource = muza;
         }
-        public class Lista1
-        {
-            public string Nazwa { get; set; }
-           // public string Ścieszka { get; set; }
-           // public int Procent { get; set; }
-        }
+
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
