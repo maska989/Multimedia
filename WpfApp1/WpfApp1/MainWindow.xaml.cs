@@ -21,18 +21,19 @@ namespace WpfApp1
     /// Logika interakcji dla klasy MainWindow.xaml
     /// </summary>
 
-
     public partial class MainWindow : Window
     {
         public string NazwaUtworó;
         public string filePath;
-        List<string> Utwór = new List<string>();
         List<Muzyka> muza = new List<Muzyka>();
+        public SoundPlayer player = new SoundPlayer();
+
         public MainWindow()
         {
 
             InitializeComponent();
 
+            
         }
         public class Muzyka
         {
@@ -42,7 +43,7 @@ namespace WpfApp1
             public override string ToString()
             {
                 
-                return nazwa + " " + ścieszka;
+                return ścieszka;
             }
 
         }
@@ -60,7 +61,6 @@ namespace WpfApp1
 
                       foreach(string filepath in openFileDialog.FileNames)
                     {
-                        Utwór.Add(openFileDialog.SafeFileName);
                         muza.Add(new Muzyka() {nazwa = openFileDialog.SafeFileName , ścieszka = filepath });
                         
                         
@@ -85,6 +85,18 @@ namespace WpfApp1
         {
             //ListBoxWav.SelectedItem.;
             //Utwór.Remove();
+        }
+
+        private void ListWPF_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void Play_Click(object sender, RoutedEventArgs e)
+        {
+            
+           // ListWPF.SelectedIndex = muza.;
+         //   player.SoundLocation = 
         }
     }
 }
