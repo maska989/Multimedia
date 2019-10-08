@@ -62,7 +62,7 @@ namespace WpfApp1
                       foreach(string filepath in openFileDialog.FileNames)
                     {
                         muza.Add(new Muzyka() {nazwa = openFileDialog.SafeFileName , ścieszka = filepath });
-                        
+                        ListWPF.Items.Add(this.muza.Last<Muzyka>());
                         
                     }
                     
@@ -72,7 +72,7 @@ namespace WpfApp1
             catch(Exception ex) {
                 MessageBox.Show(ex.Message, "Błąd załadowania utworu.");
             }
-            ListWPF.ItemsSource = muza;
+           
         }
 
 
