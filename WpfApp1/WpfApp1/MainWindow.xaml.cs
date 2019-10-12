@@ -32,8 +32,8 @@ namespace WpfApp1
         {
 
             InitializeComponent();
-
             
+            //MenuWPF.Items
         }
         public class Muzyka
         {
@@ -52,18 +52,17 @@ namespace WpfApp1
             try
             {
                 OpenFileDialog openFileDialog = new OpenFileDialog();
-                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.InitialDirectory = "C:\\Windows\\Media";
                 openFileDialog.DefaultExt.Contains("*.wav");
                 openFileDialog.Filter = "Wav files (*wav)|*.wav";
-                openFileDialog.Multiselect = true;
+                openFileDialog.Multiselect = false;
                 if (openFileDialog.ShowDialog() == true)
                 {
 
                       foreach(string filepath in openFileDialog.FileNames)
                     {
                         muza.Add(new Muzyka() {nazwa = openFileDialog.SafeFileName , ścieszka = filepath });
-                        ListWPF.Items.Add(this.muza.Last<Muzyka>());
-                        
+                        ListWPF.Items.Add(muza.Last<Muzyka>().nazwa);
                     }
                     
                 }
@@ -72,31 +71,65 @@ namespace WpfApp1
             catch(Exception ex) {
                 MessageBox.Show(ex.Message, "Błąd załadowania utworu.");
             }
-           
+            
         }
-
-
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //ListBoxWav.SelectedItem.;
-            //Utwór.Remove();
+            try {
+                muza.RemoveAt(ListWPF.SelectedIndex);
+                ListWPF.Items.RemoveAt(ListWPF.SelectedIndex);
+            }
+            catch
+            {
+                MessageBox.Show("Błąd usunięcia utworu!","Error");
+            }
         }
-
-        private void ListWPF_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         private void Play_Click(object sender, RoutedEventArgs e)
         {
-            
-           // ListWPF.SelectedIndex = muza.;
-         //   player.SoundLocation = 
+            try
+            {
+                STbar.Items.Clear();
+                player.SoundLocation = muza.ElementAt(ListWPF.SelectedIndex).ToString();
+                STbar.Items.Add(ListWPF.SelectedItem);
+                player.Play();
+          
+            }
+            catch
+            {
+                MessageBox.Show("Wybierz utwór", "Error");
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                ListWPF.SelectedIndex --;
+                STbar.Items.Clear();
+                player.SoundLocation = muza.ElementAt(ListWPF.SelectedIndex).ToString();
+                STbar.Items.Add(ListWPF.SelectedItem);
+                player.Play();
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                ListWPF.SelectedIndex ++;
+                STbar.Items.Clear();
+                player.SoundLocation = muza.ElementAt(ListWPF.SelectedIndex).ToString();
+                STbar.Items.Add(ListWPF.SelectedItem);
+                player.Play();
+            }
+            catch
+            {
+
+            }
         }
     }
 }

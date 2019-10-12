@@ -5,14 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Button x:Name="Dodaj" Content="Dodaj" HorizontalAlignment="Left" Margin="270,20,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.173,5.7" Click="Dodaj_Click"/>
-        <Button x:Name="Usuń" Content="Ususń" HorizontalAlignment="Left" Margin="270,45,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <Button x:Name="Play" Content="|&gt;" HorizontalAlignment="Left" Margin="270,70,0,0" VerticalAlignment="Top" Width="75" Click="Play_Click"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="270,95,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.533,-0.5"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="270,120,0,0" VerticalAlignment="Top" Width="75"/>
-        <ListBox x:Name="ListWPF" HorizontalAlignment="Left" Height="120" Margin="10,20,0,0" VerticalAlignment="Top" Width="255" SelectionChanged="ListWPF_SelectionChanged"/>
+        Title="MainWindow" Height="272" Width="369" HorizontalAlignment="Center" VerticalAlignment="Center">
+    <Grid Margin="0,0,2,-1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="111*"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="Dodaj" Content="Dodaj" HorizontalAlignment="Left" Margin="270,35,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.173,5.7" Click="Dodaj_Click" Grid.Row="1"/>
+        <Button x:Name="Usuń" Content="Ususń" HorizontalAlignment="Left" Margin="270,60,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" Grid.Row="1"/>
+        <Button x:Name="Play" Content="Play" HorizontalAlignment="Left" Margin="270,85,0,0" VerticalAlignment="Top" Width="75" Click="Play_Click" Grid.Row="1"/>
+        <Button Content="&lt;--" HorizontalAlignment="Left" Margin="10,167,0,0" VerticalAlignment="Top" Width="110" RenderTransformOrigin="0.533,-0.5" Click="Button_Click_1" Grid.Row="1"/>
+        <Button Content="--&gt;" HorizontalAlignment="Left" Margin="125,167,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click_2" Grid.Row="1"/>
+        <ListBox x:Name="ListWPF" HorizontalAlignment="Left" Height="120" Margin="10,35,0,0" VerticalAlignment="Top" Width="255" Grid.Row="1"/>
+        <StatusBar x:Name="STbar" HorizontalAlignment="Left" Height="20" Margin="10,192,0,0" VerticalAlignment="Top" Width="339" Grid.Row="1"/>
+        <Menu x:Name="MenuWPF" Height="35" Margin="0,0,10,207" VerticalAlignment="Top" Grid.RowSpan="2" HorizontalAlignment="Center" Width="339">
+            <Button ContentStringFormat=""/>
+            <MenuItem Header="Dodaj"/>
+            <Button/>
+            <MenuItem Header="Usuń"/>
+            <Button/>
+            <MenuItem Header="Play"/>
+            <Button/>
+        </Menu>
 
     </Grid>
 </Window>
