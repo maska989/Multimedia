@@ -17,10 +17,6 @@ using System.Media;
 using Microsoft.Win32;
 namespace WpfApp1
 {
-    /// <summary>
-    /// Logika interakcji dla klasy MainWindow.xaml
-    /// </summary>
-
     public partial class MainWindow : Window
     {
         public string NazwaUtworó;
@@ -32,8 +28,9 @@ namespace WpfApp1
         {
 
             InitializeComponent();
-            
-            //MenuWPF.Items
+            MenuDodaj.Click += Dodaj_Click;
+            MenuUsusn.Click += Button_Click;
+            MenuPlay.Click += Play_Click;
         }
         public class Muzyka
         {
@@ -42,8 +39,9 @@ namespace WpfApp1
 
             public override string ToString()
             {
-                
+
                 return ścieszka;
+
             }
 
         }
@@ -58,15 +56,13 @@ namespace WpfApp1
                 openFileDialog.Multiselect = false;
                 if (openFileDialog.ShowDialog() == true)
                 {
-
-                      foreach(string filepath in openFileDialog.FileNames)
+                    foreach (string filepath in openFileDialog.FileNames)
                     {
-                        muza.Add(new Muzyka() {nazwa = openFileDialog.SafeFileName , ścieszka = filepath });
+                        muza.Add(new Muzyka() { nazwa = openFileDialog.SafeFileName, ścieszka = filepath });
                         ListWPF.Items.Add(muza.Last<Muzyka>().nazwa);
                     }
-                    
+
                 }
-                
             }
             catch(Exception ex) {
                 MessageBox.Show(ex.Message, "Błąd załadowania utworu.");
@@ -78,21 +74,31 @@ namespace WpfApp1
             try {
                 muza.RemoveAt(ListWPF.SelectedIndex);
                 ListWPF.Items.RemoveAt(ListWPF.SelectedIndex);
+                STbar.Items.Clear();
+                player.Stop();
             }
             catch
             {
-                MessageBox.Show("Błąd usunięcia utworu!","Error");
+                MessageBox.Show("Błąd usunięcia utworu! \nWybierz utwór!","Error");
             }
         }
         private void Play_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                STbar.Items.Clear();
+                if (Pętla.IsChecked.Equals("False")) { 
+                    STbar.Items.Clear();
                 player.SoundLocation = muza.ElementAt(ListWPF.SelectedIndex).ToString();
                 STbar.Items.Add(ListWPF.SelectedItem);
                 player.Play();
-          
+                }
+                else
+                {
+                    STbar.Items.Clear();
+                    player.SoundLocation = muza.ElementAt(ListWPF.SelectedIndex).ToString();
+                    STbar.Items.Add(ListWPF.SelectedItem);
+                    player.PlayLooping();
+                }
             }
             catch
             {
@@ -104,15 +110,23 @@ namespace WpfApp1
         {
             try
             {
-                ListWPF.SelectedIndex --;
-                STbar.Items.Clear();
-                player.SoundLocation = muza.ElementAt(ListWPF.SelectedIndex).ToString();
-                STbar.Items.Add(ListWPF.SelectedItem);
-                player.Play();
+                if(ListWPF.SelectedIndex >= 1){
+                    ListWPF.SelectedIndex--;
+                    STbar.Items.Clear();
+                    player.SoundLocation = muza.ElementAt(ListWPF.SelectedIndex).ToString();
+                    STbar.Items.Add(ListWPF.SelectedItem);
+                    player.Play();
+                }
+                else
+                {
+                    STbar.Items.Clear();
+                    player.SoundLocation = muza.ElementAt(ListWPF.SelectedIndex).ToString();
+                    STbar.Items.Add(ListWPF.SelectedItem);
+                    player.Play();
+                }
             }
             catch
             {
-
             }
         }
 
@@ -128,7 +142,35 @@ namespace WpfApp1
             }
             catch
             {
+            }
+        }
 
+        private void Sync_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                STbar.Items.Clear();
+                player.SoundLocation = muza.ElementAt(ListWPF.SelectedIndex).ToString();
+                STbar.Items.Add(ListWPF.SelectedItem);
+                player.PlaySync();
+
+            }
+            catch
+            {
+                MessageBox.Show("Wybierz utwór", "Error");
+            }
+        }
+
+        private void Stop_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                STbar.Items.Clear();
+                player.Stop();
+            }
+            catch
+            {
+                MessageBox.Show("Bład obsługi!","Error");
             }
         }
     }
